@@ -10,3 +10,7 @@ def restuarantPageView(request) :
     return HttpResponse("Restuarant")
 def ratingPageView(request) :
     return HttpResponse("Rating")
+def createPageView(request) :
+    return HttpResponse("Create")
+def deletePageView(request) :
+    return HttpResponse("Delete")

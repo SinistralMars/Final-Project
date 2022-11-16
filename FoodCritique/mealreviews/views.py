@@ -3,14 +3,14 @@ from django.http import HttpResponse
 
 # Create your views here.
 def indexPageView(request) :
-    return HttpResponse("index")
+    return render(request, "mealreviews/index.html")
 def searchPageView(request) :
-    return HttpResponse("Search")
-def restuarantPageView(request) :
-    return HttpResponse("Restuarant")
+    return render(request, "mealreviews/search.html")
+def restaurantPageView(request) :
+    return render(request, "mealreviews/restaurant.html")
 def ratingPageView(request) :
-    return HttpResponse("Rating")
+    return render(request, "mealreviews/rating.html")
 def createPageView(request) :
-    return HttpResponse("Create")
+    return render(request, "mealreviews/create.html")
 def deletePageView(request) :
-    return HttpResponse("Delete")
+    return render(request, "mealreviews/delete.html")

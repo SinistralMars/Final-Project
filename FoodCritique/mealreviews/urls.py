@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import indexPageView, searchPageView, restuarantPageView, ratingPageView, createPageView, deletePageView
+from .views import indexPageView, searchPageView, restaurantPageView, ratingPageView, createPageView, deletePageView
 
 urlpatterns = [
     path('', indexPageView, name = 'index'),
@@ -7,6 +7,6 @@ urlpatterns = [
     path('create', createPageView, name = 'create'), #Create
     path('search', searchPageView, name = 'search'), #Read
     path('rating', ratingPageView, name = 'rating'), #Read
-    path('restuarant', restuarantPageView, name = 'restuarant'), #Update
+    path('restaurant', restaurantPageView, name = 'restaurant'), #Update
     path('delete', deletePageView, name = 'delete'), #Delete
 ]

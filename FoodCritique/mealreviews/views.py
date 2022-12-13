@@ -44,5 +44,24 @@ def createPageView(request) :
         }
         return render(request, "mealreviews/create.html", context)
 
+def addRestaurantPageView(request) :
+    if request.method == 'POST' :
+        new_restaurant = Restaurant()
+        new_restaurant.name = request.POST['name']
+        new_restaurant.address = request.POST['address'] 
+        new_restaurant.score = request.POST['score']
+        new_restaurant.cuisineType = request.POST['cuisineType']
+
+        new_restaurant.save()
+        
+        data = Restaurant.objects.all()
+        context = {
+            "restaurants": data
+        }
+        return render(request, "mealreviews/create.html", context)
+
+    else :
+        return render(request, 'mealreviews/addRestaurant.html')
+
 def deletePageView(request) :
     return render(request, "mealreviews/delete.html")

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <a href="index.html" class="hero-logo" data-aos="zoom-in"><img src={% static "/img/hero-logo.png" %} alt=""></a>
+      {% comment %} <h1 data-aos="zoom-in">Create Page</h1> {% endcomment %}
+
+      
+
+
+      <form method="POST" action="{% url 'addRestaurant' %}" novalidate>
+        {% csrf_token %}
+        <div >
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" class="form-control" id="name" required>
+          <div class="invalid-feedback">Please, enter the name!</div>
+        </div>
+        <div>
+            <label for="address" class="form-label">Address</label>
+            <input type="text" name="address" class="form-control" id="address" required>
+            <div class="invalid-feedback">Please, enter the restaurant address!</div>
+          </div>
+        <div>
+          <label for="score" class="form-label">Score (1-10)</label>
+          <input type="text" name="score" class="form-control" id="score" required>
+          <div class="invalid-feedback">Please, enter the restaurant score!</div>
+        </div>
+        <div>
+          <label for="cuisineType" class="form-label">Cuisine Type</label>
+          <input type="text" name="cuisineType" class="form-control" id="cuisineType" required>
+          <div class="invalid-feedback">Please, enter the cuisineType!</div>
+        </div>
+
+        <button type="submit" class="btn-get-started scrollto">Submit</button>
+      </form>
+    </div>
+
+
+
+
+
+
+
+
+    
+  </section><!-- End Hero -->   
+{% endblock %}

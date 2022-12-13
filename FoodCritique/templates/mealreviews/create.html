@@ -19,7 +19,7 @@
           <select name="restaurant" class="form-control" id="restaurant">
             {% for i in restaurants %}
               <option value="{{ i.id }}">{{ i.name }}</option>
-            {% endfor %} </select><a style="font-size: small;" href="">Create a new restaurant</a>
+            {% endfor %} </select><a style="font-size: small;" href="{% url 'addRestaurant' %}">Create a new restaurant</a>
           <div class="invalid-feedback">Please, enter the restaurant name!</div>
 
         </div>

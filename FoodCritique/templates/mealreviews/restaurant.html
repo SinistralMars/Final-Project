@@ -25,7 +25,7 @@
                     {{ restaurant.name }}
                   </th>
                   <td>
-                      {{ restaurant.score }}
+                      {{ restaurant.average_value|floatformat:1 }}
                   </td>
                   <td>
                     <form method="POST" action="{% url 'delete' %}">

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Avg
 from .models import Dish, Restaurant
 
 # Create your views here.
@@ -20,10 +21,10 @@ def editPageView(request) :
 
 
 def restaurantPageView(request) :
-    data = Restaurant.objects.all()
+    data = Restaurant.objects.all().annotate(average_value=Avg('dish__score'))
 
     context = {
-        "restaurants": data
+        "restaurants": data,
     }
     return render(request, "mealreviews/restaurant.html", context)
 

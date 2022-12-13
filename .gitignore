@@ -15,6 +15,7 @@ venv
 # <django-project-name>/staticfiles/
 ### Django.Python Stack ###
 # Byte-compiled / optimized / DLL files
+staticfiles/
 *.py[cod]
 *$py.class
 # C extensions
@@ -35,6 +36,7 @@ var/
 wheels/
 share/python-wheels/
 *.egg-info/
+*.env
 .installed.cfg
 *.egg
 MANIFEST

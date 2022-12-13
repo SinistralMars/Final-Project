@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Hello<p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <a href="{% url "index" %}" class="hero-logo" data-aos="zoom-in"><img src={% static "/img/hero-logo.png" %}></a>
+      <h1 data-aos="zoom-in">Welcome To FoodCritique</h1>
+      <h2 data-aos="fade-up">A website for reviewing meals of a restaurant</h2>
+      <div style='display: inline-block'>
+        <a data-aos="fade-up" data-aos-delay="200" href="{% url 'create' %}" class="btn-get-started scrollto">Create Review</a>
+        <a data-aos="fade-up" data-aos-delay="200" href="{% url 'restaurant' %}" class="btn-get-started scrollto">View Restaurants</a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+{% endblock %}

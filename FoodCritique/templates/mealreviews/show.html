@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <a href="{% url "index" %}" class="hero-logo" data-aos="zoom-in"><img src={% static "/img/hero-logo.png" %}></a>
+      <form class="" method="POST" action="{% url 'edit' %}" novalidate data-aos="zoom-in">
+        {% csrf_token %}
+        <input type="hidden" id="id" name="id" value="{{ restaurant.id }}">
+        <div>
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" class="form-control" id="name" value="{{ restaurant.name }}" required>
+        </div>
+        <div>
+          <label for="address" class="form-label">Address</label>
+          <input type="text" name="address" class="form-control" id="address" value="{{ restaurant.address }}" required>
+        </div>
+        <div>
+          <label for="description" class="form-label">Description</label>
+          <input type="text" name="description" class="form-control" id="description" value="{{ restaurant.cuisineType }}" required>
+        </div>
+
+        <button type="submit" class="btn-get-started scrollto">Edit</button>
+      </form>
+    </div>
+  </section><!-- End Hero -->
+{% endblock %}

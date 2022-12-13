@@ -4,7 +4,6 @@ from django.db import models
 class Restaurant(models.Model) :
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
-    score = models.DecimalField(max_digits=1, decimal_places=1)
     cuisineType = models.CharField(max_length=30)
 
     def __str__(self) :
@@ -14,12 +13,12 @@ class Restaurant(models.Model) :
         db_table = 'Restaurants'
 
 class Dish(models.Model) :
-    restuarant = models.ForeignKey(Restaurant, on_delete=models.DO_NOTHING)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    score =  models.DecimalField(max_digits=1, decimal_places=1)
+    score =  models.DecimalField(max_digits=10, decimal_places=1)
     description = models.CharField(max_length=100)
     
     def __str__(self) :
-        return (self.name)
+        return (self.description)
     class Meta :
         db_table = 'Dish'

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <a href="{% url "index" %}" class="hero-logo" data-aos="zoom-in"><img src={% static "/img/hero-logo.png" %}></a>
+      <h1 data-aos="zoom-in">{{ restaurant.name }}</h1>
+      <h2 data-aos="fade-up">This is a list of all of the dishes for the restaurant {{ restaurant.name }}</h2>
+      <div  style="overflow: auto" class="table datatable dataTable-table" data-aos="fade-up">
+        <table class="table datatable dataTable-table">
+          <thead>
+            <tr>
+                <th scope="col" data-sortable="" style="width: 28.0093%;"><a href="#" class="dataTable-sorter">Dish Name</a></th>
+                <th scope="col" data-sortable="" style="width: 28.0093%;"><a href="#" class="dataTable-sorter">Dish Rating</a></th>
+                <th scope="col" data-sortable="" style="width: 28.0093%;"><a href="#" class="dataTable-sorter">Description</a></th>
+            </tr>
+          </thead>
+          <tbody style="color:white">
+              {% if dishes.count > 0 %}
+                {% for dish in dishes %}
+                <tr>
+                    <th scope="row">
+                      {{ dish.name }}
+                    </th>
+                    <td>
+                      {{ dish.score }}
+                    </td>
+                    <td>
+                      {{ dish.description }}
+                    </td>
+                    <td>
+                      <form method="POST" action="{% url 'deleteDish' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary" name="delete" id="delete">Delete Dish</button>
+                        <input type="hidden" name="id" id="id" value={{ dish.id }}></input>
+                      </form>
+                    </td>
+                </tr>
+                {% endfor %}
+              {% else %}
+              <p data-aos="fade-up" style="color: white">There are currently no dish reviews for this restaurant</p>
+              {% endif%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+{% endblock %}

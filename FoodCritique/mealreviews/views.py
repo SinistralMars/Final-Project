@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 # Create your views here.
 def indexPageView(request) :
@@ -8,6 +7,16 @@ def searchPageView(request) :
     return render(request, "mealreviews/search.html")
 def restaurantPageView(request) :
     return render(request, "mealreviews/restaurant.html")
+
+def dishPageView(request) :
+    if request.method == 'POST' :
+        context = {
+            'restaurant' : request.POST['restaurant']
+        }
+        return render(request, "mealreviews/dish.html", context)
+    else :
+        return render(request, "mealreviews/restaurant.html")
+
 def ratingPageView(request) :
     return render(request, "mealreviews/rating.html")
 def createPageView(request) :

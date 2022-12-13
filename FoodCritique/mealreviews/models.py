@@ -14,7 +14,7 @@ class Restaurant(models.Model) :
         db_table = 'Restaurants'
 
 class Dish(models.Model) :
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.DO_NOTHING)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     score =  models.DecimalField(max_digits=10, decimal_places=1)
     description = models.CharField(max_length=100)

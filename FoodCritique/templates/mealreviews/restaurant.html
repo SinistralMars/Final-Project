@@ -17,33 +17,36 @@
               <th scope="col" data-sortable="" style="width: 5.6713%;"></th>
            </tr>
         </thead>
-        <tbody>
-            {% for restaurant in restaurants %}
-            <tr>
-                <th scope="row">
-                   {{ restaurant.name }}
-                </th>
-                <td>
-                    {{ restaurant.score }}
-                </td>
-                <td>
-                    {{meal.meal_type}}
-                </td>
-                <td>
-                    {{meal.time_eaten}}
-                </td>
-                <td>
-                    <form method="POST" action="{% url 'deleteMeal' mealid=meal.id %}">
+        <tbody style="color:white">
+            {% if restaurants.count > 0 %}
+              {% for restaurant in restaurants %}
+              <tr>
+                  <th scope="row">
+                    {{ restaurant.name }}
+                  </th>
+                  <td>
+                      {{ restaurant.score }}
+                  </td>
+                  <td>
+                    <form method="POST" action="{% url 'delete' %}">
                       {% csrf_token %}
-                      <button type="submit" class="btn btn-primary" name="deleteFood" id="deleteFood">Delete Meal</button>
-                      <input type="hidden" name="user" id="user" value={{userId}}></input>
+                      <button type="submit" class="btn btn-primary" name="delete" id="delete">Delete Restaurant</button>
+                      <input type="hidden" name="id" id="id" value={{ restaurant.id }}></input>
                     </form>
-                </td>
-            </tr>
-            {% endfor %}
+                  </td>
+                  <td>
+                    <a href="{% url 'show' id=restaurant.id %}">
+                    <button class="btn btn-primary" name="edit" id="edit">Edit Restaurant Info</button>
+                    </a>
+                  </td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              There are currently no restaurants.
+            {% endif%}
         </tbody>
      </table>
-      <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Restaurant</a>
+      {% comment %} <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Restaurant</a> {% endcomment %}
     </div>
   </section><!-- End Hero -->
 {% endblock %}

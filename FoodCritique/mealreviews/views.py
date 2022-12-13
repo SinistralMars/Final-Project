@@ -4,15 +4,28 @@ from .models import Dish, Restaurant
 # Create your views here.
 def indexPageView(request) :
     return render(request, "mealreviews/index.html")
-def searchPageView(request) :
-    return render(request, "mealreviews/search.html")
+
+def editPageView(request) :
+    if request.method == 'POST':
+        id = request.POST['id']
+        restaurant = Restaurant.objects.get(id=id)
+        restaurant.name = request.POST['name']
+        restaurant.address = request.POST['address']
+        restaurant.score = request.POST['rating']
+        restaurant.cuisineType = request.POST['description']
+
+        restaurant.save()
+
+        return render(request, "mealreviews/restaurant.html")
+
+
 def restaurantPageView(request) :
     data = Restaurant.objects.all()
 
     context = {
         "restaurants": data
     }
-    return render(request, "mealreviews/restaurant.html")
+    return render(request, "mealreviews/restaurant.html", context)
 
 def dishPageView(request) :
     if request.method == 'POST' :
@@ -23,8 +36,13 @@ def dishPageView(request) :
     else :
         return render(request, "mealreviews/restaurant.html")
 
-def ratingPageView(request) :
-    return render(request, "mealreviews/rating.html")
+def showPageView(request, id) :
+    data = Restaurant.objects.get(id=id)
+
+    context = {
+        'restaurant' : data
+    }
+    return render(request, "mealreviews/show.html", context)
 
 def createPageView(request) :
     if request.method == 'POST':
@@ -45,4 +63,11 @@ def createPageView(request) :
         return render(request, "mealreviews/create.html", context)
 
 def deletePageView(request) :
-    return render(request, "mealreviews/delete.html")
+    data = Restaurant.objects.get(id=request.POST.get('id'))
+
+    data.delete()
+
+    context = {
+        "restaurants": data
+    }
+    return render(request, "mealreviews/restaurant.html", context)

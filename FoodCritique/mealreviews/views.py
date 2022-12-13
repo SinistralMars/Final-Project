@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Dish, Restaurant
 
 # Create your views here.
@@ -16,7 +16,7 @@ def editPageView(request) :
 
         restaurant.save()
 
-        return render(request, "mealreviews/restaurant.html")
+        return redirect('restaurant')
 
 
 def restaurantPageView(request) :
@@ -28,13 +28,16 @@ def restaurantPageView(request) :
     return render(request, "mealreviews/restaurant.html", context)
 
 def dishPageView(request) :
-    if request.method == 'POST' :
-        context = {
-            'restaurant' : request.POST['restaurant']
-        }
-        return render(request, "mealreviews/dish.html", context)
-    else :
-        return render(request, "mealreviews/restaurant.html")
+    id = request.GET['id']
+    data = Dish.objects.all().filter(restaurant_id=id)
+
+    restaurant = Restaurant.objects.get(id=id)
+
+    context = {
+        'dishes' : data,
+        'restaurant' : restaurant
+    }
+    return render(request, "mealreviews/dish.html", context)
 
 def showPageView(request, id) :
     data = Restaurant.objects.get(id=id)
@@ -89,4 +92,14 @@ def deletePageView(request) :
     context = {
         "restaurants": data
     }
-    return render(request, "mealreviews/restaurant.html", context)
+    return redirect('restaurant')
+
+def deleteDishPageView(request) :
+    data = Dish.objects.get(id=request.POST.get('id'))
+
+    data.delete()
+
+    context = {
+        "dishes": data
+    }
+    return redirect('restaurant')

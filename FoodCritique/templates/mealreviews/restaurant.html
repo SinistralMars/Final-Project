@@ -7,7 +7,42 @@
     <div class="hero-container">
       <a href="index.html" class="hero-logo" data-aos="zoom-in"><img src={% static "/img/hero-logo.png" %} alt=""></a>
       <h1 data-aos="zoom-in">Restaurant</h1>
-      <h2 data-aos="fade-up">This is the restaurant page</h2>
+      <h2 data-aos="fade-up">This is a table with all of the restaurants</h2>
+      <table class="table datatable dataTable-table">
+        <thead>
+           <tr>
+              <th scope="col" data-sortable="" style="width: 28.0093%;"><a href="#" class="dataTable-sorter">Restaurant</a></th>
+              <th scope="col" data-sortable="" style="width: 28.0093%;"><a href="#" class="dataTable-sorter">Overall Rating</a></th>
+              <th scope="col" data-sortable="" style="width: 5.6713%;"></th>
+              <th scope="col" data-sortable="" style="width: 5.6713%;"></th>
+           </tr>
+        </thead>
+        <tbody>
+            {% for restaurant in restaurants %}
+            <tr>
+                <th scope="row">
+                   {{ restaurant.name }}
+                </th>
+                <td>
+                    {{ restaurant.score }}
+                </td>
+                <td>
+                    {{meal.meal_type}}
+                </td>
+                <td>
+                    {{meal.time_eaten}}
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'deleteMeal' mealid=meal.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-primary" name="deleteFood" id="deleteFood">Delete Meal</button>
+                      <input type="hidden" name="user" id="user" value={{userId}}></input>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+     </table>
       <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Restaurant</a>
     </div>
   </section><!-- End Hero -->

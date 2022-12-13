@@ -6,9 +6,127 @@
   <section id="hero">
     <div class="hero-container">
       <a href="index.html" class="hero-logo" data-aos="zoom-in"><img src={% static "/img/hero-logo.png" %} alt=""></a>
-      <h1 data-aos="zoom-in">Create Page</h1>
-      <h2 data-aos="fade-up">This is the create page</h2>
-      <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Create</a>
+      {% comment %} <h1 data-aos="zoom-in">Create Page</h1> {% endcomment %}
+
+      
+
+
+      <form class="" method="POST" action="{% url 'create' %}" novalidate>
+        {% csrf_token %}
+        <div class="">
+          <label for="restaurant" class="form-label">Restaurant (must have been created)</label>
+          <br>
+          <select name="restaurant" class="form-control" id="restaurant">
+            {% for i in restaurants %}
+              <option value="{{ i.id }}">{{ i.name }}</option>
+            {% endfor %} </select>
+          <div class="invalid-feedback">Please, enter the restaurant name!</div>
+
+        </div>
+        <div class="">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" name="name" class="form-control" id="name" required>
+          <div class="invalid-feedback">Please, enter the name!</div>
+        </div>
+        <div class="">
+          <label for="rating" class="form-label">Rating (1-10)</label>
+          <input type="text" name="rating" class="form-control" id="rating" required>
+          <div class="invalid-feedback">Please, enter the dish rating!</div>
+        </div>
+        <div class="">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" name="description" class="form-control" id="description" required>
+          <div class="invalid-feedback">Please, enter the description!</div>
+        </div>
+
+        <button type="submit" class="btn-get-started scrollto">Submit</button>
+      </form>
     </div>
-  </section><!-- End Hero -->
+
+
+
+
+
+
+
+
+    
+  </section><!-- End Hero -->   
 {% endblock %}
+
+{% comment %} <form class="row g-3 needs-validation" method="POST" action="{% url 'register' %}" novalidate>
+  {% csrf_token %}
+  <div class="col-12">
+    <label for="restaurant" class="form-label">Restaurant</label>
+    <input type="text" name="restaurant" class="form-control" id="restaurant" required>
+    <div class="invalid-feedback">Please, enter the restaurant name!</div>
+  </div>
+  <div class="col-12">
+    <label for="l_name" class="form-label">Last Name</label>
+    <input type="text" name="l_name" class="form-control" id="l_name" required>
+    <div class="invalid-feedback">Please, enter your name!</div>
+  </div>
+  <div class="col-12">
+    <label for="email" class="form-label">Your Email</label>
+    <input type="email" name="email" class="form-control" id="email" required>
+    <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+  </div>
+  <div class="col-12">
+    <label for="age" class="form-label">Your Age</label>
+    <input type="number" name="age" class="form-control" id="age" required>
+    <div class="invalid-feedback">Please enter a valid Age!</div>
+  </div>
+  <div class="col-12">
+    <label for="weight" class="form-label">Your Weight</label>
+    <input type="number" name="weight" class="form-control" id="weight" required>
+    <div class="invalid-feedback">Please enter a valid Weight!</div>
+  </div>
+  <div class="col-12">
+    <label for="height" class="form-label">Your Height</label>
+    <input type="number" name="height" class="form-control" id="height" required>
+    <div class="invalid-feedback">Please enter a valid Height!</div>
+  </div>
+  <div class="col-12">
+    <label for="gender" class="form-label">Your Gender</label>
+    <select name="gender" class="form-control" id="gender" required>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <div class="invalid-feedback">Please choose a gender!</div>
+  </div>
+  <div class="col-12">
+    <label for="healthlevel" class="form-label">Your Health Level</label>
+    <select name="healthlevel" class="form-control" id="healthlevel" required>
+      <option value="normal">Normal</option>
+      <option value="stage3/4">Stage 3/4</option>
+      <option value="dialysis">Dialysis</option>
+    </select>
+    <div class="invalid-feedback">Please choose a health level!</div>
+  </div>
+  <div class="col-12">
+    <label for="username" class="form-label">Username</label>
+    <div class="input-group has-validation">
+      <span class="input-group-text" id="inputGroupPrepend">@</span>
+      <input type="text" name="username" class="form-control" id="username" required>
+      <div class="invalid-feedback">Please choose a username.</div>
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" name="password" class="form-control" id="password" required>
+    <div class="invalid-feedback">Please enter your password!</div>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+      <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
+      <div class="invalid-feedback">You must agree before submitting.</div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary w-100" type="submit">Create Account</button>
+  </div>
+  <div class="col-12">
+    <p class="small mb-0">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+  </div>
+</form> {% endcomment %}

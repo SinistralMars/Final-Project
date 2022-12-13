@@ -12,7 +12,6 @@ def editPageView(request) :
         restaurant = Restaurant.objects.get(id=id)
         restaurant.name = request.POST['name']
         restaurant.address = request.POST['address']
-        restaurant.score = request.POST['rating']
         restaurant.cuisineType = request.POST['description']
 
         restaurant.save()
@@ -71,7 +70,6 @@ def addRestaurantPageView(request) :
         new_restaurant = Restaurant()
         new_restaurant.name = request.POST['name']
         new_restaurant.address = request.POST['address'] 
-        new_restaurant.score = request.POST['score']
         new_restaurant.cuisineType = request.POST['cuisineType']
 
         new_restaurant.save()
